@@ -13,6 +13,11 @@
 		C6AC39CB15F80AC100FF0D95 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C6AC39C915F80AC100FF0D95 /* InfoPlist.strings */; };
 		C6AC39CD15F80AC100FF0D95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C6AC39CC15F80AC100FF0D95 /* main.m */; };
 		C6AC39D115F80AC100FF0D95 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6AC39D015F80AC100FF0D95 /* AppDelegate.m */; };
+		C6AC39D915F80B8300FF0D95 /* BlocksGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6AC39D815F80B8300FF0D95 /* BlocksGameViewController.m */; };
+		C6AC39DC15F80BB700FF0D95 /* BlocksGameView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6AC39DB15F80BB700FF0D95 /* BlocksGameView.m */; };
+		C6AC39DF15F80CAA00FF0D95 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C6AC39DE15F80CAA00FF0D95 /* GameObject.m */; };
+		C6AC39E515F80CDA00FF0D95 /* Shape.m in Sources */ = {isa = PBXBuildFile; fileRef = C6AC39E415F80CDA00FF0D95 /* Shape.m */; };
+		C6AC39E815F8155B00FF0D95 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6AC39E715F8155B00FF0D95 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +31,15 @@
 		C6AC39CE15F80AC100FF0D95 /* BlocksGame-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlocksGame-Prefix.pch"; sourceTree = "<group>"; };
 		C6AC39CF15F80AC100FF0D95 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C6AC39D015F80AC100FF0D95 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C6AC39D715F80B8300FF0D95 /* BlocksGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocksGameViewController.h; sourceTree = "<group>"; };
+		C6AC39D815F80B8300FF0D95 /* BlocksGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlocksGameViewController.m; sourceTree = "<group>"; };
+		C6AC39DA15F80BB700FF0D95 /* BlocksGameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocksGameView.h; sourceTree = "<group>"; };
+		C6AC39DB15F80BB700FF0D95 /* BlocksGameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlocksGameView.m; sourceTree = "<group>"; };
+		C6AC39DD15F80CAA00FF0D95 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
+		C6AC39DE15F80CAA00FF0D95 /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
+		C6AC39E315F80CDA00FF0D95 /* Shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shape.h; sourceTree = "<group>"; };
+		C6AC39E415F80CDA00FF0D95 /* Shape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shape.m; sourceTree = "<group>"; };
+		C6AC39E715F8155B00FF0D95 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6AC39E815F8155B00FF0D95 /* QuartzCore.framework in Frameworks */,
 				C6AC39C115F80AC100FF0D95 /* UIKit.framework in Frameworks */,
 				C6AC39C315F80AC100FF0D95 /* Foundation.framework in Frameworks */,
 				C6AC39C515F80AC100FF0D95 /* CoreGraphics.framework in Frameworks */,
@@ -45,6 +60,7 @@
 		C6AC39B115F80AC100FF0D95 = {
 			isa = PBXGroup;
 			children = (
+				C6AC39E715F8155B00FF0D95 /* QuartzCore.framework */,
 				C6AC39C615F80AC100FF0D95 /* BlocksGame */,
 				C6AC39BF15F80AC100FF0D95 /* Frameworks */,
 				C6AC39BD15F80AC100FF0D95 /* Products */,
@@ -72,6 +88,10 @@
 		C6AC39C615F80AC100FF0D95 /* BlocksGame */ = {
 			isa = PBXGroup;
 			children = (
+				C6AC39E615F80CDD00FF0D95 /* Shape */,
+				C6AC39E215F80CC700FF0D95 /* BlocksGameView */,
+				C6AC39E115F80CB700FF0D95 /* BlocksGameViewController */,
+				C6AC39E015F80CAE00FF0D95 /* GameObject */,
 				C6AC39CF15F80AC100FF0D95 /* AppDelegate.h */,
 				C6AC39D015F80AC100FF0D95 /* AppDelegate.m */,
 				C6AC39C715F80AC100FF0D95 /* Supporting Files */,
@@ -88,6 +108,42 @@
 				C6AC39CE15F80AC100FF0D95 /* BlocksGame-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C6AC39E015F80CAE00FF0D95 /* GameObject */ = {
+			isa = PBXGroup;
+			children = (
+				C6AC39DD15F80CAA00FF0D95 /* GameObject.h */,
+				C6AC39DE15F80CAA00FF0D95 /* GameObject.m */,
+			);
+			name = GameObject;
+			sourceTree = "<group>";
+		};
+		C6AC39E115F80CB700FF0D95 /* BlocksGameViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C6AC39D715F80B8300FF0D95 /* BlocksGameViewController.h */,
+				C6AC39D815F80B8300FF0D95 /* BlocksGameViewController.m */,
+			);
+			name = BlocksGameViewController;
+			sourceTree = "<group>";
+		};
+		C6AC39E215F80CC700FF0D95 /* BlocksGameView */ = {
+			isa = PBXGroup;
+			children = (
+				C6AC39DA15F80BB700FF0D95 /* BlocksGameView.h */,
+				C6AC39DB15F80BB700FF0D95 /* BlocksGameView.m */,
+			);
+			name = BlocksGameView;
+			sourceTree = "<group>";
+		};
+		C6AC39E615F80CDD00FF0D95 /* Shape */ = {
+			isa = PBXGroup;
+			children = (
+				C6AC39E315F80CDA00FF0D95 /* Shape.h */,
+				C6AC39E415F80CDA00FF0D95 /* Shape.m */,
+			);
+			name = Shape;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +210,10 @@
 			files = (
 				C6AC39CD15F80AC100FF0D95 /* main.m in Sources */,
 				C6AC39D115F80AC100FF0D95 /* AppDelegate.m in Sources */,
+				C6AC39D915F80B8300FF0D95 /* BlocksGameViewController.m in Sources */,
+				C6AC39DC15F80BB700FF0D95 /* BlocksGameView.m in Sources */,
+				C6AC39DF15F80CAA00FF0D95 /* GameObject.m in Sources */,
+				C6AC39E515F80CDA00FF0D95 /* Shape.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
