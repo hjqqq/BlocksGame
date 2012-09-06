@@ -11,6 +11,9 @@
 
 @interface BlocksGameView()
 @property int cubeWidth;
+@property (strong) UILabel *scoreLabel;
+@property (strong) UILabel *timeLabel;
+
 @end
 
 @implementation BlocksGameView
@@ -23,6 +26,19 @@
         // Initialization code
         self.backgroundColor = [UIColor blackColor];
         self.cubeWidth = self.bounds.size.width / 8;
+        self.scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 60)];
+        self.scoreLabel.backgroundColor = [UIColor clearColor];
+        self.scoreLabel.font = [UIFont fontWithName:@"Helvetica" size:30];
+        self.scoreLabel.textAlignment = UITextAlignmentCenter;
+        [self addSubview:self.scoreLabel];
+        
+        self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 60, self.bounds.size.width, 60)];
+        self.timeLabel.backgroundColor = [UIColor clearColor];
+        self.timeLabel.font = [UIFont fontWithName:@"Helvetica" size:30];
+        self.timeLabel.textAlignment = UITextAlignmentCenter;
+        [self addSubview:self.timeLabel];
+        self.timeLeft = 30;
+        self.viewScore = 0;
     }
     return self;
 }
@@ -33,6 +49,15 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    //draw score
+    self.scoreLabel.textColor = [UIColor whiteColor];
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.viewScore];
+    
+    //draw time
+    self.timeLabel.textColor = [UIColor whiteColor];
+    self.timeLabel.text = [NSString stringWithFormat:@"Time: %d", self.timeLeft];
+    
     CGFloat startX = 0;
     CGFloat startY = self.bounds.size.height - self.cubeWidth;
     for (NSMutableArray *array in self.viewGrid) {

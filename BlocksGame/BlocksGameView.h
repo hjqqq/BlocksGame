@@ -10,5 +10,6 @@
 
 @interface BlocksGameView : UIView
 @property (strong) NSArray *viewGrid;
-
+@property int viewScore;
+@property int timeLeft;
 @end

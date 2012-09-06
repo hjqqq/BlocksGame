@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BlocksGameViewController : UIViewController
+@interface BlocksGameViewController : UIViewController <UIAlertViewDelegate>
 
 @end

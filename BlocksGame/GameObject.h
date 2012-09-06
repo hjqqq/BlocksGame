@@ -12,4 +12,6 @@
 @property (strong) NSArray *grid;
 @property (strong) NSArray *colors;
 -(void)handleTouchAtX:(int)xPosition andY:(int)yPosition;
+-(void)addCubes;
+@property int score;
 @end
