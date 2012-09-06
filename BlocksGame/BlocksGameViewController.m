@@ -24,14 +24,12 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
         [self resetGame];
     }
     return self;
 }
 
 -(void)handleTimer {
-    //NSLog(@"timer fired!");
     self.secondsLeft--;
     if (self.secondsLeft % 3 == 0) {
         [self.gameObject addCubes];
@@ -68,11 +66,9 @@
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     CGPoint touchPosition = [[touches anyObject] locationInView:self.view];
-    NSLog(@"touch at %f, %f", touchPosition.x, touchPosition.y);
     //check if touch is inside shape, return shape's position and color
     int xPosition = (int)touchPosition.x / self.cubeWidth;
     int yPosition = (self.view.bounds.size.height-(int)(touchPosition.y))/self.cubeWidth;
-    NSLog(@"check grid for shape at location: %d, %d",xPosition , yPosition);
     [self.gameObject handleTouchAtX:xPosition andY:yPosition];
     self.blocksGameView.viewGrid = self.gameObject.grid;
     self.blocksGameView.viewScore = self.gameObject.score;
