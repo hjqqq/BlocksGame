@@ -13,6 +13,7 @@
 @interface BlocksGameViewController ()
 @property (strong) GameObject *gameObject;
 @property (strong) BlocksGameView *blocksGameView;
+@property int cubeWidth;
 @end
 
 @implementation BlocksGameViewController
@@ -23,6 +24,7 @@
     if (self) {
         // Custom initialization
         self.view = [[BlocksGameView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x,self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
+        self.cubeWidth = self.view.bounds.size.width / 8;
         self.blocksGameView = (BlocksGameView *)self.view;
         self.gameObject = [GameObject new];
     }
@@ -33,8 +35,8 @@
     CGPoint touchPosition = [[touches anyObject] locationInView:self.view];
     NSLog(@"touch at %f, %f", touchPosition.x, touchPosition.y);
     //check if touch is inside shape, return shape's position and color
-    int xPosition = (int)touchPosition.x / 40;
-    int yPosition = (480-(int)(touchPosition.y))/40;
+    int xPosition = (int)touchPosition.x / self.cubeWidth;
+    int yPosition = (self.view.bounds.size.height-(int)(touchPosition.y))/self.cubeWidth;
     NSLog(@"check grid for shape at location: %d, %d",xPosition , yPosition);
     [self.gameObject handleTouchAtX:xPosition andY:yPosition];
     self.blocksGameView.viewGrid = self.gameObject.grid;

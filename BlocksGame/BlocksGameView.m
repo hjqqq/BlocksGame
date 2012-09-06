@@ -10,6 +10,7 @@
 #import "Shape.h"
 
 @interface BlocksGameView()
+@property int cubeWidth;
 @end
 
 @implementation BlocksGameView
@@ -21,7 +22,7 @@
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor blackColor];
-        
+        self.cubeWidth = self.bounds.size.width / 8;
     }
     return self;
 }
@@ -33,15 +34,15 @@
 {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGFloat startX = 0;
-    CGFloat startY = 440;
+    CGFloat startY = self.bounds.size.height - self.cubeWidth;
     for (NSMutableArray *array in self.viewGrid) {
         for (Shape *shape in array) {
             [shape.color set];
-            CGContextFillRect(ctx, CGRectMake(startX, startY, 40, 40));
-            startY-=40;
+            CGContextFillRect(ctx, CGRectMake(startX, startY, self.cubeWidth, self.cubeWidth));
+            startY-=self.cubeWidth;
         }
-        startX +=40;
-        startY=440;
+        startX +=self.cubeWidth;
+        startY=self.bounds.size.height - self.cubeWidth;
     }
 }
 
