@@ -36,7 +36,7 @@
     CABasicAnimation *fadeAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     fadeAnimation.fromValue = [NSNumber numberWithFloat:1.0];
     fadeAnimation.toValue = [NSNumber numberWithFloat:0.0];
-    //fadeAnimation.duration = 1.0;
+    fadeAnimation.duration = 0.1;
     [self.layer addAnimation:fadeAnimation forKey:@"fadeAnimation"];
     [CATransaction commit];
 }

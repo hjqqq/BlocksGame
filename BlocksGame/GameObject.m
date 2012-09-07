@@ -98,12 +98,6 @@
                     movingShape.layer.position = CGPointMake(movingShape.layer.position.x, movingShape.layer.position.y + 40);
                 }
                 break;
-//            while (i < array.count) {
-//                NSLog(@"moving shape down!");
-//                Shape *movingShape = [array objectAtIndex:i];
-//                movingShape.layer.position = CGPointMake(shape.layer.position.x, shape.layer.position.y + 40);
-//                i++;
-//            }
             }
         }
     }
