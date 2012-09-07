@@ -87,20 +87,23 @@
         //NSLog(@"removing shape");
         for (NSMutableArray *array in self.grid) {
             //find index of shape being removed
-            int shapeInteger = [array indexOfObject:shape];
-            [array removeObject:shape];
-            [shape destroy];
-            for (int i = shapeInteger; i< array.count; i++) {
-                Shape *movingShape = [array objectAtIndex:i];
-                movingShape.layer.position = CGPointMake(movingShape.layer.position.x, movingShape.layer.position.y + 40);
-            }
+            
+            if ([array containsObject:shape]) {
+                int shapeInteger = [array indexOfObject:shape];
+                [array removeObject:shape];
+                [shape destroy];
+                
+                for (int i = shapeInteger; i< array.count; i++) {
+                    Shape *movingShape = [array objectAtIndex:i];
+                    movingShape.layer.position = CGPointMake(movingShape.layer.position.x, movingShape.layer.position.y + 40);
+                }
 //            while (i < array.count) {
 //                NSLog(@"moving shape down!");
 //                Shape *movingShape = [array objectAtIndex:i];
 //                movingShape.layer.position = CGPointMake(shape.layer.position.x, shape.layer.position.y + 40);
 //                i++;
 //            }
-            
+            }
         }
     }
     self.shapesToRemove = [NSMutableArray new];

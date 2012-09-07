@@ -29,15 +29,15 @@
 
 -(void)destroy {
     [CATransaction begin];
-    [CATransaction setAnimationDuration:1.0];
+    [CATransaction setAnimationDuration:.1];
+    [CATransaction setCompletionBlock:^(void) {
+        [self.layer removeFromSuperlayer];
+    }];
     CABasicAnimation *fadeAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     fadeAnimation.fromValue = [NSNumber numberWithFloat:1.0];
     fadeAnimation.toValue = [NSNumber numberWithFloat:0.0];
     //fadeAnimation.duration = 1.0;
     [self.layer addAnimation:fadeAnimation forKey:@"fadeAnimation"];
-    [CATransaction setCompletionBlock:^(void) {
-        [self.layer removeFromSuperlayer];
-    }];
     [CATransaction commit];
 }
 
