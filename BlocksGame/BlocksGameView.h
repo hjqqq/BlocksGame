@@ -12,4 +12,5 @@
 @property (strong) NSArray *viewGrid;
 @property int viewScore;
 @property int timeLeft;
+@property int cubeWidth;
 @end

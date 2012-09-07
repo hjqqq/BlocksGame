@@ -11,20 +11,40 @@
 @implementation Shape
 @synthesize color = _color;
 
--(id)initWithColor:(UIColor *)initColor {
+-(id)initWithColor:(UIColor *)initColor andPosition:(CGPoint)position andSize:(int)size andView:(UIView*)view {
     self = [super init];
     if (self) {
+        NSLog(@"creating shape! size is %d, color is %@, position is %f, %f", size, initColor, position.x, position.y);
         _color = initColor;
-        self.shapeLayer = [CALayer new];
-        self.shapeLayer.bounds = CGRectMake(0, 0, 40, 40);
+        self.layer = [CALayer new];
+        self.layer.position = position;
+        self.layer.delegate = self;
+        self.layer.bounds = CGRectMake(0, 0, size, size);
+        [view.layer addSublayer:self.layer];
+        [self.layer setNeedsDisplay];
         //NSLog(@"Created shape!");
     }
     return self;
 }
 
--(id)init {
-    //NSLog(@"init with color");
-    return [self initWithColor:[UIColor whiteColor]];
+-(void)destroy {
+    [CATransaction begin];
+    [CATransaction setAnimationDuration:1.0];
+    CABasicAnimation *fadeAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    fadeAnimation.fromValue = [NSNumber numberWithFloat:1.0];
+    fadeAnimation.toValue = [NSNumber numberWithFloat:0.0];
+    //fadeAnimation.duration = 1.0;
+    [self.layer addAnimation:fadeAnimation forKey:@"fadeAnimation"];
+    [CATransaction setCompletionBlock:^(void) {
+        [self.layer removeFromSuperlayer];
+    }];
+    [CATransaction commit];
+}
+
+-(void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx {
+    NSLog(@"drawing shape!");
+    CGContextSetFillColorWithColor(ctx, [self.color CGColor]);
+    CGContextFillRect(ctx, layer.bounds);
 }
 
 -(NSString *)description {

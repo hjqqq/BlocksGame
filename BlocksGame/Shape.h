@@ -11,6 +11,7 @@
 
 @interface Shape : NSObject
 @property (strong) UIColor *color;
-@property (strong) CALayer *shapeLayer;
--(id)initWithColor:(UIColor *)initColor;
+@property (strong) CALayer *layer;
+-(id)initWithColor:(UIColor *)initColor andPosition:(CGPoint)position andSize:(int)size andView:(UIView *)view;
+-(void)destroy;
 @end

@@ -7,48 +7,54 @@
 //
 
 #import "GameObject.h"
+#import "BlocksGameView.h"
 #import "Shape.h"
 @interface GameObject()
 @property NSMutableArray *shapesToRemove;
+@property (strong) BlocksGameView *gameView;
 @end
 
 @implementation GameObject
 @synthesize grid = _grid;
 @synthesize colors = _colors;
 
--(id)init {
+-(id)initWithGameView:(BlocksGameView *)view {
     self = [super init];
     if (self) {
         _colors = [NSArray arrayWithObjects:[UIColor redColor], [UIColor greenColor], [UIColor whiteColor], [UIColor yellowColor], [UIColor orangeColor] , nil];
+        self.gameView = view;
         [self setupGrid];
         self.shapesToRemove = [NSMutableArray new];
         self.score = 0;
+        
     }
     return self;
 }
 
 -(void)setupGrid {
     self.grid = [NSArray arrayWithObjects:[NSMutableArray new], [NSMutableArray new],[NSMutableArray new],[NSMutableArray new],[NSMutableArray new],[NSMutableArray new],[NSMutableArray new],[NSMutableArray new],nil];
+    int arrayNum = 0;
     for (NSMutableArray *array in self.grid) {
         for (int i =0; i< 8; i++) {
             int shapeColor = arc4random() % [self.colors count];
-            Shape *shape = [[Shape alloc] initWithColor:[self.colors objectAtIndex:shapeColor]];
+            Shape *shape = [[Shape alloc] initWithColor:[self.colors objectAtIndex:shapeColor] andPosition:CGPointMake(arrayNum * self.gameView.cubeWidth + self.gameView.cubeWidth/2, self.gameView.bounds.size.height-20 - i*self.gameView.cubeWidth) andSize:self.gameView.cubeWidth andView:self.gameView];
             [array addObject:shape];
         }
+        arrayNum++;
     }
     //NSLog(@"grid is:\n %@", self.grid);
 }
 
 -(void)addCubes {
-    for (NSMutableArray *array in self.grid) {
-        if (array.count < 8) {
-            if (arc4random() % 2 == 0) {
-                int shapeColor = arc4random() % [self.colors count];
-                Shape *shape = [[Shape alloc] initWithColor:[self.colors objectAtIndex:shapeColor]];
-                [array addObject:shape];
-            }
-        }
-    }
+//    for (NSMutableArray *array in self.grid) {
+//        if (array.count < 8) {
+//            if (arc4random() % 2 == 0) {
+//                int shapeColor = arc4random() % [self.colors count];
+//                Shape *shape = [[Shape alloc] initWithColor:[self.colors objectAtIndex:shapeColor]];
+//                [array addObject:shape];
+//            }
+//        }
+//    }
 }
 
 -(void)handleTouchAtX:(int)xPosition andY:(int)yPosition {
@@ -80,10 +86,23 @@
     for (Shape *shape in self.shapesToRemove) {
         //NSLog(@"removing shape");
         for (NSMutableArray *array in self.grid) {
+            //find index of shape being removed
+            int shapeInteger = [array indexOfObject:shape];
             [array removeObject:shape];
+            [shape destroy];
+            for (int i = shapeInteger; i< array.count; i++) {
+                Shape *movingShape = [array objectAtIndex:i];
+                movingShape.layer.position = CGPointMake(movingShape.layer.position.x, movingShape.layer.position.y + 40);
+            }
+//            while (i < array.count) {
+//                NSLog(@"moving shape down!");
+//                Shape *movingShape = [array objectAtIndex:i];
+//                movingShape.layer.position = CGPointMake(shape.layer.position.x, shape.layer.position.y + 40);
+//                i++;
+//            }
+            
         }
     }
-    
     self.shapesToRemove = [NSMutableArray new];
 }
 

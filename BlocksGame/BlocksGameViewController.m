@@ -53,10 +53,11 @@
 }
 
 -(void)resetGame {
-    self.view = [[BlocksGameView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x,self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
+    NSLog(@"view bounds origin: %f, %f, width: %f, height: %f", self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height);
+    self.view = [[BlocksGameView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.cubeWidth = self.view.bounds.size.width / 8;
     self.blocksGameView = (BlocksGameView *)self.view;
-    self.gameObject = [GameObject new];
+    self.gameObject = [[GameObject alloc] initWithGameView:self.blocksGameView];
     self.secondsLeft = 30;
     self.blocksGameView.viewGrid = self.gameObject.grid;
     self.blocksGameView.viewScore = self.gameObject.score;

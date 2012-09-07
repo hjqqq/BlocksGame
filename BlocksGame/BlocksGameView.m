@@ -8,9 +8,10 @@
 
 #import "BlocksGameView.h"
 #import "Shape.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface BlocksGameView()
-@property int cubeWidth;
+
 @property (strong) UILabel *scoreLabel;
 @property (strong) UILabel *timeLabel;
 
@@ -43,32 +44,31 @@
     return self;
 }
 
-
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-    
-    //draw score
+//    CGContextRef ctx = UIGraphicsGetCurrentContext();
+//    
+//    //draw score
     self.scoreLabel.textColor = [UIColor whiteColor];
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.viewScore];
-    
-    //draw time
+//    
+//    //draw time
     self.timeLabel.textColor = [UIColor whiteColor];
     self.timeLabel.text = [NSString stringWithFormat:@"Time: %d", self.timeLeft];
-    
-    CGFloat startX = 0;
-    CGFloat startY = self.bounds.size.height - self.cubeWidth;
-    for (NSMutableArray *array in self.viewGrid) {
-        for (Shape *shape in array) {
-            [shape.color set];
-            CGContextFillRect(ctx, CGRectMake(startX, startY, self.cubeWidth, self.cubeWidth));
-            startY-=self.cubeWidth;
-        }
-        startX +=self.cubeWidth;
-        startY=self.bounds.size.height - self.cubeWidth;
-    }
+//    
+//    CGFloat startX = 0;
+//    CGFloat startY = self.bounds.size.height - self.cubeWidth;
+//    for (NSMutableArray *array in self.viewGrid) {
+//        for (Shape *shape in array) {
+//            [shape.color set];
+//            CGContextFillRect(ctx, CGRectMake(startX, startY, self.cubeWidth, self.cubeWidth));
+//            startY-=self.cubeWidth;
+//        }
+//        startX +=self.cubeWidth;
+//        startY=self.bounds.size.height - self.cubeWidth;
+//    }
 }
 
 
